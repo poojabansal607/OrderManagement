@@ -1,0 +1,2 @@
+location for war file ":" /srv/salt/development/states/application/MyApp.war
+Because : from command line when we give ....salt 'tomcatminion' state.sls install_tomcat_9 env=development... here env = /srv/salt/development/states ( from Salt Master file ) and in state file we have salt://application/MyApp.war
