@@ -5,13 +5,13 @@
     <groupId>com.sape.order</groupId>
     <artifactId>order-management-service</artifactId>
     <packaging>jar</packaging>
-    <version>${bambooSnapShotVersion}</version>
+    <version>1.0-SNAPSHOT</version>
     <name>order-management-service</name>
     <url>http://maven.apache.org</url>
     <parent>
         <artifactId>order-management</artifactId>
         <groupId>order-management</groupId>
-        <version>${bambooSnapShotVersion}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -24,12 +24,12 @@
         <dependency>
             <groupId>com.sape.order</groupId>
             <artifactId>order-management-model</artifactId>
-            <version>${bambooSnapShotVersion}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>order-management</groupId>
             <artifactId>order-management-metrics</artifactId>
-            <version>${bambooSnapShotVersion}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

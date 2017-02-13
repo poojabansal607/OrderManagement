@@ -2,14 +2,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.sape.order</groupId>
   <artifactId>order-management-ui</artifactId>
-    <version>${bambooSnapShotVersion}</version>
+    <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>order-management-ui</name>
 
     <parent>
         <artifactId>order-management</artifactId>
         <groupId>order-management</groupId>
-        <version>${bambooSnapShotVersion}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
 
@@ -22,12 +22,12 @@
   	<dependency>
 			<groupId>com.sape.order</groupId>
 			<artifactId>order-management-service</artifactId>
-			<version>${bambooSnapShotVersion}</version>
+			<version>1.0-SNAPSHOT</version>
 	</dependency>
 	<dependency>
 			<groupId>com.sape.order</groupId>
 			<artifactId>order-management-model</artifactId>
-			<version>${bambooSnapShotVersion}</version>
+			<version>1.0-SNAPSHOT</version>
 	</dependency>
    <dependency>
 			<groupId>junit</groupId>

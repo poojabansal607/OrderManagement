@@ -2,14 +2,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.sape.order</groupId>
   <artifactId>order-management-model</artifactId>
-    <version>${bambooSnapShotVersion}</version>
+    <version>1.0-SNAPSHOT</version>
   <name>order-management-model</name>
   <packaging>jar</packaging>
   <description>order-management-model</description>
     <parent>
         <artifactId>order-management</artifactId>
         <groupId>order-management</groupId>
-        <version>${bambooSnapShotVersion}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <dependencies>
