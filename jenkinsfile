@@ -1,0 +1,80 @@
+node ("master")
+{
+   try{
+   stage('Checkout') { 
+      // Get some code from a GitHub repository
+      checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Pooja_GIT', url: 'https://github.com/poojabansal607/OrderManagement.git']]])
+   }
+   stage('OrderManagement Build') {
+      // Run the maven build
+      sh ''/usr/share/mvn' clean install' 
+	  // Email for build 
+	  emailext body: '''Hi,
+		Build is successful.
+		Regards,
+		Pooja''', compressLog: true, recipientProviders: [[$class: 'DevelopersRecipientProvider']], subject: 'Build is successful', to: 'pooja.bansal@sapient.com'
+   }
+   stage('Run sonar') {
+      sh ''/usr/share/mvn' sonar:sonar'
+	  // Email for Sonar
+	  emailext body: '''Hi,
+		Build is successful.
+		Regards,
+		Pooja''', compressLog: true, recipientProviders: [[$class: 'DevelopersRecipientProvider']], subject: 'Build is successful', to: 'pooja.bansal@sapient.com'
+   } 
+   } catch (error)
+   {
+   //Failure email
+   emailext body: '''Hi,
+		Build failed.
+		Regards,
+		Pooja''', compressLog: true, recipientProviders: [[$class: 'DevelopersRecipientProvider']], subject: 'Build is successful', to: 'pooja.bansal@sapient.com'
+    throw error
+   }
+}
+node ("10.202.7.250")
+{
+try{
+  stage ('Deployment to QA')
+  {
+    //Tomcat deployment
+    sh '''./shutdown.sh
+	cp -rf <tomcat location> <tomcat destination>
+	./startup.sh'''
+	//Deployment Mail
+	emailext body: '''Hi,
+		Deployed to QA.
+		Regards,
+		Pooja''', compressLog: true, recipientProviders: [[$class: 'DevelopersRecipientProvider']], subject: 'Build is successful', to: 'pooja.bansal@sapient.com'
+  }
+  stage ('Run Acceptance tests'){
+  //Checkout code for Tests
+  checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Pooja_GIT', url: 'https://github.com/poojabansal607/order-management-acceptance.git']]])
+  }
+  stage ('Run Acceptance tests'){
+  //Running acceptance tests
+  sh ''/usr/share/mvn' clean test'
+  //Collecting reports
+  }
+  stage ('Run Jmeter Tests'){
+  //Checkout code for Tests
+  checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Pooja_GIT', url: 'https://github.com/poojabansal607/order-management-performance.git']]])
+  }
+  stage ('JmeterTests'){
+  //Running acceptance tests
+  sh ''/usr/share/mvn' clean test'
+  //Collecting reports
+  }
+  stage ('Nexus'){
+  //Running acceptance tests
+  sh ''/usr/share/mvn' clean deploy'
+} } catch (error) {
+    //Deployment failure
+	emailext body: '''Hi,
+		Deployed to QA failed.
+		Regards,
+		Pooja''', compressLog: true, recipientProviders: [[$class: 'DevelopersRecipientProvider']], subject: 'Build is successful', to: 'pooja.bansal@sapient.com'
+    // Add rollback steps
+		}
+}
+
