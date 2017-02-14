@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>order-management</groupId>
     <artifactId>order-management-metrics</artifactId>
-    <version>${bambooSnapShotVersion}</version>
+    <version>1.0-SNAPSHOT</version>
     <name>order-management-metrics</name>
 
     <parent>
