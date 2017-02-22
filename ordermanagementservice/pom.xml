@@ -164,7 +164,7 @@
     </dependencies>
 
     <build>
-        <finalName>orderManagementService_1.0}</finalName>
+        <finalName>orderManagementService-1.0-SNAPSHOT</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
